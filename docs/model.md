@@ -3,10 +3,11 @@
 erDiagram
     Survey ||--o{ QuestionOrder : has
     Survey ||--o{ SurveyResponse : has
+    QuestionType ||--o{ Question : is
     Question ||--o{ QuestionOrder : has
-    Question ||--o{ Response : has 
-    SurveyResponse ||--o{ Response : has
-    User ||--o{ Response : has
+    Question ||--o{ QuestionResponse : has 
+    SurveyResponse ||--o{ QuestionResponse : has
+    User ||--o{ QuestionResponse : has
     User ||--o{ SurveyResponse : has
    
 ```
