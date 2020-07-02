@@ -9,6 +9,16 @@ erDiagram
     SurveyResponse ||--o{ QuestionResponse : has
     User ||--o{ QuestionResponse : has
     User ||--o{ SurveyResponse : has
-   
+
+```
+
+```mermaid
+
+
+
+classDiagram
+    class Survey
+    Survey : +int id
+    
 ```
 
