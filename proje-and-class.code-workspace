@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../njit-IS601"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"**/*.html": "html",
+			"**/templates/**/*.html": "django-html",
+			"**/templates/**/*": "django-txt",
+			"**/requirements{/**,*}.{txt,in}": "pip-requirements"
+		}
+	}
+}
