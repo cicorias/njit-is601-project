@@ -25,7 +25,7 @@ SECRET_KEY = 'n-n=gxdh7#1v7j0&_6csg6oj@m8=c817f_te%k9s1&7wpc!_jq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'survey.apps.SurveyConfig',
 ]
 
 MIDDLEWARE = [
