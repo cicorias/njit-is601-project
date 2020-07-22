@@ -1,6 +1,15 @@
 {
     "python.pythonPath": ".venv/bin/python",
+    "python.languageServer": "Jedi",
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true
+    "python.linting.flake8Enabled": true,
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.extraPaths": [
+      "./surveysite/survey",
+      "./surveysite"
+    ],
+    "[python]": {
+      "editor.tabSize": 4
+    },
 }
