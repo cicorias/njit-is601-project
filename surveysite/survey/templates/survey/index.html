@@ -1,0 +1,19 @@
+
+{% extends 'survey/base.html' %}
+{% block title %}Current Surveys{% endblock %}
+
+{% block content %}
+<h1>Your list of Surveys</h1>
+<p>Clicking and item will launch the Survey.</p>
+{% if items %}
+    <ul>
+    {% for item in items %}
+        <li>ID: {{ item.id }} <a target="_blank" href="/survey/{{ item.id }}">{{ item.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Surveys are available.</p>
+{% endif %}
+
+{% endblock %}
+
