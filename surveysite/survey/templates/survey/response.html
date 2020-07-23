@@ -1,13 +1,32 @@
 {% extends "survey/base.html" %}
+{% block title %}Survey: {{ survey.name }}{% endblock %}
 {% block content %}
 
-<h1>{{survey.name}}</h1>
+<h1 class="display-4">Survey: {{survey.name}}</h1>
 
-<ul>
-    {% for question in survey.questions.all %}
-        <li>ID: {{ question.id }}</li>
-    {% endfor %}
-    </ul>
-
+<p class="lead">
+    {{ survey.description }}
+  </p>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">text</th>
+            <th scope="col">choices</th>
+            <th scope="col">question type</th>
+            <th scope="col">order</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for question in survey.questions.all %}
+        <tr>
+            <td>{{ question.id }}</td>
+            <td>{{ question.text }}</td>
+            <td>{{ question.choices }}</td>
+            <td>{{ question.question_type }}</td>
+            <td>{{ question.order }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
-

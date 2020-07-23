@@ -1,3 +1,11 @@
+# TODO:
+use hidden fields for the meta-data about the survey response posting
+post and persist as JSON using https://medium.com/@philamersune/using-postgresql-jsonfield-in-sqlite-95ad4ad2e5f1
+
+https://paltman.com/how-to-store-arbitrary-data-in-a-django-model/
+https://github.com/PythonExpert/simple-json-text-field
+
+
 
 # Ideas
 
