@@ -8,6 +8,8 @@ https://github.com/PythonExpert/simple-json-text-field
 
 
 # Ideas
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Home_page
+
 
 ## Data Models
 
