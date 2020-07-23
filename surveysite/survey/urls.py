@@ -9,5 +9,7 @@ urlpatterns = [
     #  this uses django feature for pagination.
     path('', login_required(views.SurveyList.as_view(
         template_name='survey_list.html'))),
-    path('<int:item_id>/', views.detail, name='survey-detail'),
+    #  path('<int:item_id>/', views.detail, name='survey-detail'),
+    path('<int:item_id>/', views.SurveyView.as_view(),
+         name='survey-detail'),
 ]
