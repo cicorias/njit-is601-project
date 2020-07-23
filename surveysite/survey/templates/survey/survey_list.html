@@ -6,6 +6,7 @@
 <p>Clicking and item will launch the Survey.</p>
 
 
+<!-- TODO: make this a table -->
 {% for survey in page_obj %}
     {# Each "survey" is a Survey model object. #}
     <li>ID: {{ survey.id }} <a target="_blank" href="/survey/{{ survey.id }}">{{ survey.name }}</a></li>
