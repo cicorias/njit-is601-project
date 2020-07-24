@@ -34,7 +34,7 @@ class SurveyView(View):
         return render(request, 'survey/response.html', context)
 
     def post(self, request: HttpRequest, *args: Tuple, **kwargs: Dict[str, Any]):
-        survey = get_object_or_404(Survey, id=kwargs['item_id'])
+        survey = get_object_or_404(Survey, is_published=True, id=kwargs['item_id'])
         response = SurveyResponse(
             survey=survey,
             content='againfoo'
