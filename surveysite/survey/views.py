@@ -33,6 +33,9 @@ class SurveyView(View):
 
         return render(request, 'survey/response.html', context)
 
+    def post(self, request: HttpRequest, *args: Tuple, **kwargs: Dict[str, Any]):
+        return HttpResponse('thanks')
+
 
 # def index2(request: HttpRequest) -> HttpResponse:
 #     return SurveyList()

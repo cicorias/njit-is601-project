@@ -54,6 +54,10 @@ class Question(models.Model):
         #  msg += "{}".format(self.get_clean_choices())
         return 'Survey: {} - Question: {}'.format(self.survey.name, self.text)
 
+    @property
+    def button_choices(self):
+        return str(self.choices).split(',')
+
     class Meta(object):
         verbose_name = 'question'
         verbose_name_plural = 'questions'
