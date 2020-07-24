@@ -1,3 +1,7 @@
+# Known issues
+- form can be NAV back and reposted - there is no resubmission prevention now.
+
+
 # TODO:
 use hidden fields for the meta-data about the survey response posting
 post and persist as JSON using https://medium.com/@philamersune/using-postgresql-jsonfield-in-sqlite-95ad4ad2e5f1

@@ -10,7 +10,7 @@ from django.views.generic import ListView, View
 from django.shortcuts import get_object_or_404, render
 #  from django.urls import reverse
 
-from .models import Survey
+from .models import Survey, SurveyResponse
 # from .forms import ResponseForm
 
 
@@ -34,6 +34,13 @@ class SurveyView(View):
         return render(request, 'survey/response.html', context)
 
     def post(self, request: HttpRequest, *args: Tuple, **kwargs: Dict[str, Any]):
+        survey = get_object_or_404(Survey, id=kwargs['item_id'])
+        response = SurveyResponse(
+            survey=survey,
+            content='againfoo'
+        )
+        response.save()
+
         return HttpResponse('thanks')
 
 

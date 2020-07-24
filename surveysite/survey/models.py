@@ -1,5 +1,9 @@
 from django.db import models
 
+#  hack from
+#  https://medium.com/@philamersune/using-postgresql-jsonfield-in-sqlite-95ad4ad2e5f1
+from .fields import JSONField
+
 
 class Survey(models.Model):
     name = models.CharField(max_length=60)
@@ -70,6 +74,7 @@ class Question(models.Model):
 
 class SurveyResponse(models.Model):
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
+    content = JSONField('Response', null=True, blank=True)
 
 
 class QuestionResponse(models.Model):
