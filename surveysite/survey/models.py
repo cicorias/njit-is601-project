@@ -46,10 +46,10 @@ class Question(models.Model):
                                max_length=100)
 
     question_type = models.CharField(
-                                'Type',
-                                max_length=200,
-                                choices=QUESTION_TYPES,
-                                default=TEXT)
+        'Type',
+        max_length=200,
+        choices=QUESTION_TYPES,
+        default=TEXT)
 
     order = models.IntegerField('Order')
 
@@ -69,6 +69,12 @@ class Question(models.Model):
 class SurveyResponse(models.Model):
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     content = JSONField('Response', null=True, blank=True)
+    response_id = models.CharField('response_id',
+                                   max_length=32,
+                                   blank=True, null=True)
+    session_key = models.CharField('session_key',
+                                   max_length=32,
+                                   blank=True, null=True)
 
 
 class QuestionResponse(models.Model):

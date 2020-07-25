@@ -6,8 +6,8 @@ from django.http import (HttpResponse,
                          HttpResponseRedirect,
                          JsonResponse)
 
-from django.views.generic import ListView, View
-from django.shortcuts import get_object_or_404, render
+from django.views.generic import ListView, View, TemplateView
+from django.shortcuts import get_object_or_404, redirect, render
 #  from django.urls import reverse
 
 from .models import Survey, SurveyResponse
@@ -37,19 +37,36 @@ class SurveyView(View):
         if 'csrfmiddlewaretoken' in data:
             del data['csrfmiddlewaretoken']
 
+        response_id = data['response_id']
+
         data['session_key'] = session_key
         response = SurveyResponse(
             survey=survey,
-            #  session_key=session_key,
+            response_id=response_id,
+            session_key=session_key,
             content=data
         )
         response.save()
 
-        return HttpResponse('thanks')
+        if response is None:
+            #  should never happen....
+            return redirect('/')
+        else:
+            #  TODO: add a url for below...
+            return redirect('response-confirm',
+                            response_id=response_id)
+
+        #  return HttpResponse('thanks')
 
 
-# def index2(request: HttpRequest) -> HttpResponse:
-#     return SurveyList()
+class ResponseConfirm(TemplateView):
+    template_name = 'survey/response-confirm.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ResponseConfirm, self).get_context_data(**kwargs)
+        context['response_id'] = kwargs['response_id']
+        return context
+
 
 def index(request: HttpRequest) -> HttpResponse:
     '''reached via /alt now'''
