@@ -2,10 +2,10 @@
 
 # run on first docker-compose up
 
-  docker-compose run web python manage.py makemigrations 
-  docker-compose run web python manage.py migrate
-  docker-compose run web python manage.py createsuperuser
-
+docker-compose run web python manage.py makemigrations 
+docker-compose run web python manage.py migrate
+# DJANGO_SUPERUSER_PASSWORD="Foobar1234" docker-compose run web python manage.py createsuperuser --username root --email root@example.com
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('root', 'root@example.com', 'password')" | docker-compose run web python manage.py shell
 
 #  now navigate to http://localhost:8000/admin to create a survey
 
