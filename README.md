@@ -18,7 +18,6 @@ Features, issues, etc are listed in [issues](https://github.com/cicorias/njit-is
   - stretch add social login with permitted
   - allow multiple credentials "per" profile
 
-
 # Short term actions
 - dockerize as needed - web tier, data tier
 - add application for 'survey type A' 
