@@ -1,58 +1,57 @@
 # Project for IS 601 - Summer 2020
+The project can run from a local virtual environment, managed by Poetry, or via a Docker container with docker-compose.
 
-Features, issues, etc are listed in [issues](https://github.com/cicorias/njit-is601-project/issues)
-
-# Feature List
-- survey type are different apps
-- a survey is an instance that permits
-  - 1 or more questions
-  - a creator
-  - submitters
-  - tally
-- question types are:
-  - multiple choice with a single selection
-  - multiple choice with more than 1 selection
-  - feedback type
-- protected by a login provided (Auth0 or similar)
-  - roles from provider
-  - stretch add social login with permitted
-  - allow multiple credentials "per" profile
+When running in the container the Database used is Postgres.
 
 
-# Short term actions
-- dockerize as needed - web tier, data tier
-- add application for 'survey type A' 
-- Models and database setup for surveys[template, instance, question types, questions], users
-- integrate login with external WebSSO like Auth0 
+## Getting the code
+Clone the repo
 
-
-
-## Background and Description
-Within my engineering organization we constantly do Team surveys requesting feedback on various things such as:
-- Project Pulse - these are general questions gauging aggregate team member's morale, confidence, boredom, etc.
-- Engineering Practices - our team is rated on following proper engineering practices and this survey done monthly allows Team members to provide their perspective which hopefully coincides with Leadership indicators. Things like CI/CD, Process adherence, testing practices.
-- Retrospective Feedback - retrospectives provide for process improvement, often we do a "glad, sad, mad" and capture topics for discussion and process improvement ideas that the Team can drive.
-
-## High Level Approach
-Basic Form oriented app providing for
-* logon page
-* setting up a survey
-* getting link for survey (anonymous) potentially with single use OTP or generaged nonce to prevent DoS and sharing
-* Admin view
-* Authoring view
-* Respondent view
-
-# Planned Technical Implementation
-* Django project
-* Perhaps 3 different applications for the "types" of surveys
-* Authentication using "self issues" credentials as part of signup
-* Use of OAuth2 for Google, Twitter, Microsoft logon - maybe use `social-auth-app-django` or `django-allauth`
 ```
-social-auth-app-django==3.1.0
-social-auth-core[azuread]==3.0.0
+git clone https://github.com/cicorias/njit-is601-project
+cd ./njit-is601-project
 ```
-* n-tier with Web, API tiers, along with DB tier via Django Models
-  - web tier React JS, bootstrap styling
-  - Single Page App "like" - using API tier for data calls via React JS services
-* Persistence using Python ORM / PostGres or Sqlite
-* Containerized - docker-compose app, service, and db tier
+
+At this point you're in the root of the git repository, You need to change to the folder `surveysite` for the rest of the work.
+
+
+```
+cd ./surveysite
+```
+
+Once here you should see something like the following:
+
+```
+total 496
+-rw-r--r--   1 cicorias  staff   147B Jul 25 11:43 Dockerfile
+-rw-r--r--   1 cicorias  staff   802B Jul 25 13:54 data-dump.json
+-rw-r--r--   1 cicorias  staff   180K Jul 25 12:48 db.sqlite3
+-rw-r--r--   1 cicorias  staff   454B Jul 25 12:28 docker-compose.yml
+-rwxr-xr-x   1 cicorias  staff   902B Jul 25 13:56 first-run.sh
+-rwxr-xr-x   1 cicorias  staff   856B Jul 25 12:29 manage.py
+-rw-r--r--   1 cicorias  staff    25K Jul 15 13:24 poetry.lock
+-rw-r--r--   1 cicorias  staff   467B Jul 15 13:24 pyproject.toml
+-rw-r--r--   1 cicorias  staff   445B Jul 25 11:42 requirements.txt
+drwxr-xr-x  15 cicorias  staff   480B Jul 24 22:04 survey
+drwxr-xr-x   9 cicorias  staff   288B Jul 25 12:31 surveysite
+
+```
+
+
+## Starting from container
+>Note: you must have Docker that supports docker-compose to run. This has been tested with latest Docker for desktop on MacOS.
+
+From the `./njit-is601-project/surveysite` directory:
+
+```
+# launch the config in the background
+docker-compose up --build -d
+
+# now run the seed and setup
+# this command sets up a username and password of 'root'  with 'password' ....
+./first-run.sh
+
+```
+
+> Note: this should open browser page tothe site, but if it doesn't navigate to: 
+http://localhost:8000/survey/
