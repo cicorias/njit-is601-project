@@ -1,15 +1,16 @@
 # Known issues
-- form can be NAV back and reposted - there is no resubmission prevention now.
-
+- form can be NAV back and reposted - there is no resubmission prevention now
 
 # TODO:
+- session key
+- failed post reloads values?
+
+# DONE:
 use hidden fields for the meta-data about the survey response posting
 post and persist as JSON using https://medium.com/@philamersune/using-postgresql-jsonfield-in-sqlite-95ad4ad2e5f1
 
 https://paltman.com/how-to-store-arbitrary-data-in-a-django-model/
 https://github.com/PythonExpert/simple-json-text-field
-
-
 
 # Ideas
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Home_page

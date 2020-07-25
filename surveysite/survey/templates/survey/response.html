@@ -14,7 +14,8 @@
     <input type="hidden" name="survey_id" value="{{ survey.id }}">
     <input type="hidden" name="response_id" value="{{ response_id }}">
     {% for question in survey.questions.all %}
-    <input type="hidden" name="question_id" value="{{ question.id }}">
+    <input type="hidden" name="question_text" value="{{ question.text }}">
+    <input type="hidden" name="question_type" value="{{ question.question_type }}">
 
     <div class="border border-dark rounded mb-5">
         {% if question.question_type == 'text' %}
