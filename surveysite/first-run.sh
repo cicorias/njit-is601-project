@@ -13,9 +13,9 @@ docker-compose run -e PYTHONPATH='/code'  -e DJANGO_SETTINGS_MODULE='surveysite.
 #  now navigate to http://localhost:8000/admin to create a survey
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  xdg-open http://localhost:8000/admin
+  #  xdg-open http://localhost:8000/admin
   xdg-open http://localhost:8000/survey
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  open http://localhost:8000/admin
+  #  open http://localhost:8000/admin
   open http://localhost:8000/survey
 fi

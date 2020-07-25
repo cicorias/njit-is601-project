@@ -1,5 +1,5 @@
 import json
-
+#  from ttps://medium.com/@philamersune/using-postgresql-jsonfield-in-sqlite-95ad4ad2e5f1
 from django.conf import settings
 from django.contrib.postgres.fields import (
     JSONField as DjangoJSONField,
