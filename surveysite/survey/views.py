@@ -23,9 +23,6 @@ class SurveyList(ListView):
 class SurveyView(View):
     def get(self, request: HttpRequest, *args: Tuple, **kwargs: Dict[str, Any]):
         survey = get_object_or_404(Survey, is_published=True, id=kwargs['item_id'])
-
-        #  form = ResponseForm()
-
         context = {
             'response_id': uuid.uuid4().hex,
             'survey': survey,
@@ -35,9 +32,16 @@ class SurveyView(View):
 
     def post(self, request: HttpRequest, *args: Tuple, **kwargs: Dict[str, Any]):
         survey = get_object_or_404(Survey, is_published=True, id=kwargs['item_id'])
+        session_key = request.session.session_key
+        data = request.POST.copy().dict()
+        if 'csrfmiddlewaretoken' in data:
+            del data['csrfmiddlewaretoken']
+
+        data['session_key'] = session_key
         response = SurveyResponse(
             survey=survey,
-            content='againfoo'
+            #  session_key=session_key,
+            content=data
         )
         response.save()
 

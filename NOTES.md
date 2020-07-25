@@ -1,9 +1,21 @@
 # Known issues
 - form can be NAV back and reposted - there is no resubmission prevention now
 
+check if form is valid firs....
+- https://sixfeetup.com/blog/django-form-data-in-post
+
 # TODO:
 - session key
 - failed post reloads values?
+- dynamic include templates https://stackoverflow.com/a/12669962/140618
+
+```
+{% if foo.paid %}
+    {% with template_name=foo.id|stringformat:"s"|add:".html" %}
+        {% include "foo/customization/"|add:template_name %}
+    {% endwith %}
+{% endif %}
+```
 
 # DONE:
 use hidden fields for the meta-data about the survey response posting

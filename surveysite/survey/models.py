@@ -36,26 +36,24 @@ class Question(models.Model):
     )
 
     text = models.CharField('Text', max_length=500)
-
     survey = models.ForeignKey(Survey,
                                on_delete=models.CASCADE,
                                verbose_name='Survey',
                                related_name='questions')
 
-    # question_type = models.ForeignKey(QuestionType,
-    #                                     on_delete=models.CASCADE,
-    #                                     )
-
     choices = models.CharField('Choices', blank=True, null=True,
                                help_text=CHOICES_HELP_TEXT,
-                               max_length=500)
+                               max_length=100)
 
     question_type = models.CharField(
-        'Type', max_length=200, choices=QUESTION_TYPES, default=TEXT)
+                                'Type',
+                                max_length=200,
+                                choices=QUESTION_TYPES,
+                                default=TEXT)
+
     order = models.IntegerField('Order')
 
     def __str__(self):
-        #  msg += "{}".format(self.get_clean_choices())
         return 'Survey: {} - Question: {}'.format(self.survey.name, self.text)
 
     @property
@@ -66,10 +64,6 @@ class Question(models.Model):
         verbose_name = 'question'
         verbose_name_plural = 'questions'
         ordering = 'survey', 'order'
-
-# class QuestionOrder(models.Model):
-#   '''TBD'''
-#   pass
 
 
 class SurveyResponse(models.Model):
