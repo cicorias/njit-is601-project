@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import path
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 
@@ -13,6 +13,6 @@ urlpatterns = [
     #  path('<int:item_id>/', views.detail, name='survey-detail'),
     path('<int:item_id>/', views.SurveyView.as_view(),
          name='survey-detail'),
-    url(r'^confirm/(?P<response_id>\w+)/', views.ResponseConfirm.as_view(),
+    url(r'^confirm/(?P<id>\w+)/', views.ResponseConfirm.as_view(),
         name='response-confirm'),
 ]

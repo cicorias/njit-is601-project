@@ -1,3 +1,4 @@
+from typing import Dict
 from django.db import models
 
 #  hack from
@@ -76,7 +77,14 @@ class SurveyResponse(models.Model):
                                    max_length=32,
                                    blank=True, null=True)
 
+    @property
+    def pretty_json(self) -> str:
+        import json
+        rv = json.dumps(self.content, indent=4)
+        return rv
 
+
+#  the following is NOT used as of now.
 class QuestionResponse(models.Model):
     survey_response = models.ForeignKey(
         SurveyResponse, on_delete=models.CASCADE)

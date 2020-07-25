@@ -2,5 +2,10 @@
 {% block title %}Survey: {{ survey.name }}{% endblock %}
 
 {% block content %}
-<h1>done</h1>
+<h1>Your Response information:</h1>
+
+<p>This is the JSON representation of what was submitted.</p>
+
+<textarea name="" id="" cols="100" rows="30">{{ response.pretty_json }} </textarea>
+
 {% endblock %}

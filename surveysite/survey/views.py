@@ -22,7 +22,8 @@ class SurveyList(ListView):
 
 class SurveyView(View):
     def get(self, request: HttpRequest, *args: Tuple, **kwargs: Dict[str, Any]):
-        survey = get_object_or_404(Survey, is_published=True, id=kwargs['item_id'])
+        # survey = get_object_or_404(Survey, is_published=True, id=kwargs['item_id'])
+        survey = get_object_or_404(Survey, id=kwargs['item_id'])
         context = {
             'response_id': uuid.uuid4().hex,
             'survey': survey,
@@ -31,7 +32,8 @@ class SurveyView(View):
         return render(request, 'survey/response.html', context)
 
     def post(self, request: HttpRequest, *args: Tuple, **kwargs: Dict[str, Any]):
-        survey = get_object_or_404(Survey, is_published=True, id=kwargs['item_id'])
+        # survey = get_object_or_404(Survey, is_published=True, id=kwargs['item_id'])
+        survey = get_object_or_404(Survey, id=kwargs['item_id'])
         session_key = request.session.session_key
         data = request.POST.copy().dict()
         if 'csrfmiddlewaretoken' in data:
@@ -54,7 +56,7 @@ class SurveyView(View):
         else:
             #  TODO: add a url for below...
             return redirect('response-confirm',
-                            response_id=response_id)
+                            id=response.id)
 
         #  return HttpResponse('thanks')
 
@@ -64,7 +66,10 @@ class ResponseConfirm(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ResponseConfirm, self).get_context_data(**kwargs)
-        context['response_id'] = kwargs['response_id']
+        response = get_object_or_404(SurveyResponse, id=kwargs['id'])
+
+        context['id'] = kwargs['id']
+        context['response'] = response
         return context
 
 
